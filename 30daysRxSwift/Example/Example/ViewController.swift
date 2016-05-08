@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = .None
         
-        let data = Observable.just(["Demo1"])
+        let data = Observable.just(["Demo1", "Demo2"])
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         data.bindTo(tableView.rx_itemsWithCellIdentifier("cell", cellType: UITableViewCell.self)) { (row, element, cell) in
                 cell.textLabel?.text = element
@@ -32,6 +32,9 @@ class ViewController: UIViewController {
                 switch element {
                 case "Demo1":
                     let vc = Demo1ViewController()
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                case "Demo2":
+                    let vc = Demo2ViewController()
                     self?.navigationController?.pushViewController(vc, animated: true)
                 default: break
                 }
